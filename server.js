@@ -4,7 +4,7 @@ const cors = require('cors');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const { createWorker } = require('tesseract.js');
-const franc = require('franc');
+const { franc } = require('franc');
 const fs = require('fs');
 const path = require('path');
 const { fileTypeFromBuffer } = require('file-type');
@@ -13,7 +13,7 @@ const app = express();
 const PORT = 3000;
 
 // Set up multer for file uploads
-const upload = multer({ 
+const upload = multer({
   dest: 'uploads/',
   limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
 });
@@ -162,7 +162,7 @@ Extract structured data in JSON format. Include relevant fields based on the doc
     // Clean up the uploaded file
     fs.unlinkSync(filePath);
 
-    return res.json({ 
+    return res.json({
       data: result,
       metadata: {
         fileType: fileTypeInfo,
